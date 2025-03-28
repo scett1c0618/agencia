@@ -268,3 +268,4 @@ C:\Users\scien\OneDrive\Escritorio\appAgencia\bin\Debug\net8.0\runtimes\win\lib\
 C:\Users\scien\OneDrive\Escritorio\appAgencia\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\scien\OneDrive\Escritorio\appAgencia\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\scien\OneDrive\Escritorio\appAgencia\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\scien\OneDrive\Escritorio\appAgencia\obj\Debug\net8.0\appAgencia.sourcelink.json
