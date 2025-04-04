@@ -1,0 +1,177 @@
+/* ESTILOS DEL NAVBAR */
+.ftco_navbar {
+    position: fixed !important; /* Fijo en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    background-color: transparent !important; /* Fondo inicial transparente */
+    transition: all 0.5s ease; /* Transición suave para el efecto scroll */
+    padding: 20px 0; /* Espaciado inicial */
+}
+
+.ftco_navbar.scrolled {
+    padding: 10px 0;
+    background-color: #1a1a1a !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff !important;
+    font-weight: 600;
+    padding: 8px 15px;
+    margin: 0 5px;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .active > .nav-link {
+    color: #560ce3 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: transparent;
+    padding: 0.25rem 0.75rem;
+}
+
+.navbar-dark .navbar-toggler:focus {
+    outline: none;
+}
+
+.navbar-dark .navbar-toggler .fa-bars {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Botón "INGRESAR" */
+.nav-item.cta .nav-link {
+    background: #560ce3;
+    color: #000 !important;
+    border-radius: 5px;
+    padding: 8px 20px !important;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.nav-item.cta .nav-link:hover {
+    background: #e0a800;
+    transform: translateY(-2px);
+}
+
+/* Logo */
+.navbar img {
+    height: 40px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al hacer scroll */
+.navbar.scrolled img {
+    height: 35px;
+}
+
+
+
+/* ESTILOS DEL BANNER */
+.hero-wrap {
+    position: relative;
+    z-index: 1; /* Valor menor que el navbar */
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-wrap .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 2;
+}
+
+.slider-text {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+}
+
+.slider-text h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    animation: slideInDown 1s ease-in-out;
+}
+
+.slider-text .breadcrumbs {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.slider-text .breadcrumbs a {
+    color: #560ce3;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.slider-text .breadcrumbs a:hover {
+    color: #fff;
+}
+
+.slider-text .breadcrumbs span:not(:last-child)::after {
+    content: '|';
+    margin: 0 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Ajuste para centrar verticalmente el texto */
+.hero-wrap .slider-text {
+    align-items: center !important; /* Centra verticalmente */
+    padding-top: 0 !important; /* Elimina espacio superior */
+}
+
+.hero-wrap .slider-text .text-center {
+    transform: translateY(0); /* Elimina desplazamiento hacia abajo */
+}
+
+/* Opcional: Ajustar margen inferior del título */
+.slider-text h1 {
+    margin-bottom: 10px !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slider-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .slider-text .breadcrumbs {
+        font-size: 1rem;
+    }
+}
