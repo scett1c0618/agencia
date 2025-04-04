@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace TuProyecto.Controllers // Reemplaza "TuProyecto" con el nombre de tu proyecto
+namespace appAgencia.Controllers
 {
     public class ContactoController : Controller
     {
