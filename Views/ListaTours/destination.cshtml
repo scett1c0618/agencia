@@ -1,0 +1,494 @@
+@{
+    Layout = null; // O puedes especificar tu layout si tienes uno
+    ViewBag.Title = "Destinos a Visitar";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- ANIMACIONES -->
+    <link rel="stylesheet" href="~/Lista_Tours/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Lista_Tours/css/animate.css">
+
+    <!-- ESTILOS PRINCIPALES -->
+    <link rel="stylesheet" href="~/Lista_Tours/css/bootstrap_style.css">
+    <link rel="stylesheet" href="~/Lista_Tours/css/styles.css">
+
+    <!-- ESTILOS DE LIBRERIAS -->
+    <link rel="stylesheet" href="~/Lista_Tours/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Lista_Tours/css/jquery.timepicker.css">
+
+    <!-- ÍCONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- INICIO DE NAVEGADOR -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <img src="~/Lista_Tours/images/LogoTravel.png" alt="">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fas fa-bars"></span> Menú
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link">INICIO</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">NOSOTROS</a></li>
+                    <li class="nav-item active"><a href="#" class="nav-link">TOURS</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">GUIA DE VIAJES</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">BLOG</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">CONTACTO</a></li>
+                    <li class="nav-item cta"><a href="#" class="nav-link"><i class="fa-solid fa-user"></i> INGRESAR</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- FIN DE NAVEGADOR -->
+    
+    <!-- INICIO DE BANNER -->
+    <section class="hero-wrap hero-wrap-2 " style="background-image: url('~/Lista_Tours/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <h1 class="mb-3 bread">Lugares para Viajar</h1>
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="@Url.Action("Index", "Home")">Inicio <i class="fas fa-arrow-right"></i></a></span> 
+                        <span>Guía de Viajes <i class="fas fa-arrow-right"></i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE BANNER -->
+
+    <!-- INICIO DE LOS MEJORES DESTINOS DE VIAJE-->
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center pb-4">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Mejores Destinos</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 ftco-animate">
+                    <div class="project-destination">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Lima.jpeg);">
+                            <div class="text">
+                                <h3>Lima</h3>
+                                <span>4 Tours</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 ftco-animate">
+                    <div class="project-destination">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Arequipa.jpg);">
+                            <div class="text">
+                                <h3>Arequipa</h3>
+                                <span>4 Tours</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 ftco-animate">
+                    <div class="project-destination">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Ica.jpg);">
+                            <div class="text">
+                                <h3>Ica</h3>
+                                <span>4 Tours</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 ftco-animate">
+                    <div class="project-destination">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Cusco.jpg);">
+                            <div class="text">
+                                <h3>Cusco</h3>
+                                <span>4 Tours</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE LOS MEJORES DESTINOS DE VIAJE -->
+
+    <!-- INICIO DE LA SECCIÓN DE BUSQUEDA -->
+    <section class="ftco-section ftco-no-pb ftco-no-pt">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-12 mb-5">
+                        <div class="search-wrap-1 search-wrap-notop ftco-animate p-4">
+                            <form action="#" class="search-property-1">
+                        <div class="row">
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Destino</label>
+                                <div class="form-field">
+                                    <div class="icon"><span class="fas fa-search"></span></div>
+                                <input type="text" class="form-control" placeholder="Buscar lugar">
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Fecha de entrada</label>
+                                    <div class="form-field">
+                                    <div class="icon"><span class="far fa-calendar-alt"></span></div>
+                                <input type="text" class="form-control checkin_date" placeholder="Fecha de entrada">
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Fecha de salida</label>
+                                    <div class="form-field">
+                                    <div class="icon"><span class="far fa-calendar-alt"></span></div>
+                                <input type="text" class="form-control checkout_date" placeholder="Fecha de salida">
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Límite de precio</label>
+                                    <div class="form-field">
+                                    <div class="select-wrap">
+                            <div class="icon"><span class="fas fa-chevron-down"></span></div>
+                            <select name="" id="" class="form-control">
+                                <option value="">S/. 5,000</option>
+                                <option value="">S/. 10,000</option>
+                                <option value="">S/. 50,000</option>
+                                <option value="">S/. 100,000</option>
+                                <option value="">S/. 200,000</option>
+                                <option value="">S/. 300,000</option>
+                                <option value="">S/. 400,000</option>
+                                <option value="">S/. 500,000</option>
+                                <option value="">S/. 600,000</option>
+                                <option value="">S/. 700,000</option>
+                                <option value="">S/. 800,000</option>
+                                <option value="">S/. 900,000</option>
+                                <option value="">S/. 1,000,000</option>
+                                <option value="">S/. 2,000,000</option>
+                            </select>
+                            </div>
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-lg align-self-end">
+                                <div class="form-group">
+                                    <div class="form-field">
+                                <input type="submit" value="Buscar" class="form-control btn btn-primary">
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE LA SECCIÓN DE BÚSQUEDA -->
+
+    <!-- SECCIÓN DE LA LISTA DE DESTINOS -->
+    <section class="ftco-section ftco-no-pt">
+        <div class="container">
+            <div class="row justify-content-center pb-4">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Destinos Turísticos</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Canon_Colca.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 8 días</span>
+                            <h3><a href="#">Cañón del Colca</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Arequipa, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-mountain"></span>Mirador del Cóndor</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Islas_Ballestas.jpeg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 10 días</span>
+                            <h3><a href="#">Islas Ballestas</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Ica, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-umbrella-beach"></span>Reserva natural</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Machu_Picchu.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 500 / persona</span>
+                            <span class="days">Tour 2 días</span>
+                            <h3><a href="#">Machu Picchu</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Cusco, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-landmark"></span>Maravilla del Mundo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Huacachina.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 8 días</span>
+                            <h3><a href="#">Huacachina</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Ica, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-umbrella-beach"></span>Oasis en el desierto</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Plaza_Lima.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 10 días</span>
+                            <h3><a href="#">Plaza de Armas de Lima</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Lima, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-landmark"></span>Centro histórico</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Monasterior_Santa_Catalina.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 7 días</span>
+                            <h3><a href="#">Monasterio de Santa Catalina</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Arequipa, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-church"></span>Arquitectura colonial</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Volcan_Misti.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 8 días</span>
+                            <h3><a href="#">Volcán Misti</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Arequipa, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-mountain"></span>Volcán emblemático</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Parque_Reserva.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 10 días</span>
+                            <h3><a href="#">Parque de la Reserva</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Lima, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-water"></span>Espectáculo de luces</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Sacsayhuamán.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 200 / persona</span>
+                            <span class="days">Tour 1 día</span>
+                            <h3><a href="#">Sacsayhuamán</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Cusco, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>1 baño</li>
+                                <li><span class="fas fa-bed"></span>2 habitaciones</li>
+                                <li><span class="fas fa-landmark"></span>Fortaleza Inca</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Barranco.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 8 días</span>
+                            <h3><a href="#">Barranco</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Lima, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-palette"></span>Barrio bohemio</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Nazca.jpg);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 300 / persona</span>
+                            <span class="days">Tour 10 días</span>
+                            <h3><a href="#">Nazca</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Ica, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-globe-americas"></span>Líneas de Nazca</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap">
+                        <a href="#" class="img" style="background-image: url(~/Lista_Tours/images/Destino_Valle_Sagrado.avif);"></a>
+                        <div class="text p-4">
+                            <span class="price">S/. 350 / persona</span>
+                            <span class="days">Tour 1 día</span>
+                            <h3><a href="#">Valle Sagrado</a></h3>
+                            <p class="location"><span class="fas fa-map-marker-alt"></span> Cusco, Perú</p>
+                            <ul>
+                                <li><span class="fas fa-shower"></span>2 baños</li>
+                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
+                                <li><span class="fas fa-mountain"></span>Paisajes andinos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#">&lt;</a></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE LA LISTA DE DESTINOS -->
+
+    <!-- INICIO DEL PIE DE PÁGINA -->
+    <footer class="ftco-footer bg-bottom" style="background-image: url(~/Lista_Tours/images/footer-bg.jpg);">
+        <div class="container">
+            <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                <img src="~/Lista_Tours/images/LogoTravel.png" alt="" style="margin-bottom: 40px;">
+                <p>Descubre Perú con nosotros y vive experiencias inolvidables. Ofrecemos tours seguros, organizados y llenos de aventura. ¡Tu próxima gran historia comienza aquí!</p>
+                <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-instagram"></span></a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                <h2 class="ftco-heading-2">Links Interno</h2>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="py-2 d-block">Inicio</a></li>
+                    <li><a href="#" class="py-2 d-block">Sobre la Agencia</a></li>
+                    <li><a href="destination.html" class="py-2 d-block">Listado de Tours</a></li>
+                    <li><a href="#" class="py-2 d-block">Blog</a></li>
+                    <li><a href="#" class="py-2 d-block">Contacto</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Otras Secciones</h2>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="py-2 d-block">Registra Tu Cuenta</a></li>
+                    <li><a href="#" class="py-2 d-block">Preguntas Frecuentes</a></li>
+                    <li><a href="#" class="py-2 d-block">Términos y Condiciones</a></li>
+                    <li><a href="#" class="py-2 d-block">Medios de Pago</a></li>
+                    <li><a href="#" class="py-2 d-block">Revisar Reseñas</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">¿Tienes preguntas?</h2>
+                    <div class="block-23 mb-3">
+                    <ul>
+                        <li><span class="icon fas fa-map-marker-alt"></span><span class="text">Av. Benavides 250 Surco</span></li>
+                        <li><a href="#"><span class="icon fas fa-phone"></span><span class="text">+51 6508000</span></a></li>
+                        <li><a href="#"><span class="icon far fa-clock"></span>				<span class="text"><p class="mb-0"> Lunes – Sábado: 8 am – 5 pm,<br> Domingos: <span class="text-white d-inline-block">Cerrado</span></p></span></a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FIN DEL PIE DE PÁGINA -->
+
+    <!-- SCRIPTS NECESARIOS -->	
+    <script src="~/Lista_Tours/js/jquery.min.js"></script>
+    <script src="~/Lista_Tours/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Lista_Tours/js/bootstrap.min.js"></script>
+    <script src="~/Lista_Tours/js/jquery.waypoints.min.js"></script>
+    <script src="~/Lista_Tours/js/jquery.stellar.min.js"></script>
+    <script src="~/Lista_Tours/js/owl.carousel.min.js"></script>
+    <script src="~/Lista_Tours/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Lista_Tours/js/aos.js"></script>
+    <script src="~/Lista_Tours/js/jquery.animateNumber.min.js"></script>
+    <script src="~/Lista_Tours/js/scrollax.min.js"></script>
+    <script src="~/Lista_Tours/js/main.js"></script>
+</body>
+</html>
