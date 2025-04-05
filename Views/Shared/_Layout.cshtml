@@ -11,8 +11,8 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Agencia de viajes</a>
+            <div class="container">
+                <div class="logo"><img src="images/logo.png"></div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,33 +20,84 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item"></li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contacto" asp-action="Index">Contacto</a>
-                        </li>
-                        <li class="nav-item"></li>
                             <a class="nav-link text-dark" asp-area="" asp-controller="ListaTours" asp-action="destination">Lista de Tours</a>
                         </li>
+                        <li class="nav-item"></li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Contacto" asp-action="Index">Contacto</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+
+
+
+
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+
+
+
+
+
+
+    <footer>
         <div class="container">
-            &copy; 2025 - appAgencia - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="images/logo-lite.png">
+                    <p>Descubre Perú con nosotros y vive experiencias inolvidables. 
+                        Ofrecemos tours seguros, organizados y llenos de aventura. ¡Tu próxima gran historia comienza aquí!</p>
+                </div>
+                <div class="col-md-3">
+                    <h3>Link interno</h3>
+                    <li>Inicio</li>
+                    <li>Sobre la agencia</li>
+                    <li>Listado de tours</li>
+                    <li>Blog</li>
+                    <li>Contacto</li>
+                </div>
+                <div class="col-md-3">
+                    <h3>Otras secciones</h3>
+                    <li>Registra tu cuenta</li>
+                    <li>Preguntas frecuentes</li>
+                    <li>Términos y condiciones</li>
+                    <li>Medios de pago</li>
+                    <li>Reseñas</li>
+                </div>
+                <div class="col-md-3">
+                    <h3>Contacto</h3>
+                </div>
+            </div>
+
+            2025 - AndeanExplorer 
         </div>
+        
     </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
