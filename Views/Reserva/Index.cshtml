@@ -1,0 +1,58 @@
+@model appAgencia.Models.ReservaTour
+
+@{
+    ViewData["Title"] = "Reserva Tour a Machu Picchu";
+}
+
+<link rel="stylesheet" href="~/css/estilos.css" />
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Reserva tu Tour a Machu Picchu</h2>
+    <form asp-action="Index" method="post" class="p-4 rounded shadow bg-white">
+
+        <div class="mb-3">
+            <label>Tipo de Documento</label>
+            <select asp-for="TipoDocumento" class="form-control">
+                <option>DNI</option>
+                <option>Pasaporte</option>
+                <option>Carné de Extranjería</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Número de Documento</label>
+            <input asp-for="NumeroDocumento" class="form-control" placeholder="Número de documento" />
+        </div>
+
+        <div class="mb-3">
+            <label>Nombre</label>
+            <input asp-for="Nombre" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Apellido Paterno</label>
+            <input asp-for="ApellidoPaterno" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Correo Electrónico</label>
+            <input asp-for="CorreoElectronico" type="email" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Tipo de Tour</label>
+            <select asp-for="TipoTour" class="form-control">
+                <option>Machu Picchu Clásico</option>
+                <option>Machu Picchu + Huayna Picchu</option>
+                <option>Camino Inca</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Número de Personas</label>
+            <input asp-for="NumeroPersonas" class="form-control" type="number" min="1" />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-3">Reservar Ahora</button>
+    </form>
+</div>

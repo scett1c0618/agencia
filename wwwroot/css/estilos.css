@@ -1,0 +1,27 @@
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+}
+
+form {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+label {
+    font-weight: 500;
+}
+
+input, select {
+    border-radius: 6px !important;
+}
+
+button {
+    font-weight: bold;
+    font-size: 1rem;
+}
