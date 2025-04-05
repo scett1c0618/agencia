@@ -1,5 +1,6 @@
+@model List<appAgencia.Models.Region>
 @{
-    Layout = null; // O puedes especificar tu layout si tienes uno
+    Layout = null;
     ViewBag.Title = "Destinos a Visitar";
 }
 
@@ -75,127 +76,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 ftco-animate">
-                    <div class="project-destination">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Lima.jpeg")');">
-                            <div class="text">
-                                <h3>Lima</h3>
-                                <span>4 Tours</span>
-                            </div>
-                        </a>
+                @foreach (var region in Model.Take(4))
+                {
+                    <div class="col-md-3 ftco-animate">
+                        <div class="project-destination">
+                            <a href="#" class="img" style="background-image: url('@Url.Content(region.ImgReg_url)');">
+                                <div class="text">
+                                    <h3>@region.desc_region.Split('-')[0].Trim()</h3>
+                                    <span>@region.num_tours Tours</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 ftco-animate">
-                    <div class="project-destination">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Arequipa.jpg")');">
-                            <div class="text">
-                                <h3>Arequipa</h3>
-                                <span>4 Tours</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3 ftco-animate">
-                    <div class="project-destination">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Ica.jpg")');">
-                            <div class="text">
-                                <h3>Ica</h3>
-                                <span>4 Tours</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3 ftco-animate">
-                    <div class="project-destination">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Cusco.jpg")');">
-                            <div class="text">
-                                <h3>Cusco</h3>
-                                <span>4 Tours</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </section>
     <!-- FIN DE LOS MEJORES DESTINOS DE VIAJE -->
-
-    <!-- INICIO DE LA SECCIÓN DE BUSQUEDA -->
-    <section class="ftco-section ftco-no-pb ftco-no-pt">
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-12 mb-5">
-                        <div class="search-wrap-1 search-wrap-notop ftco-animate p-4">
-                            <form action="#" class="search-property-1">
-                        <div class="row">
-                            <div class="col-lg align-items-end">
-                                <div class="form-group">
-                                    <label for="#">Destino</label>
-                                <div class="form-field">
-                                    <div class="icon"><span class="fas fa-search"></span></div>
-                                <input type="text" class="form-control" placeholder="Buscar lugar">
-                            </div>
-                        </div>
-                            </div>
-                            <div class="col-lg align-items-end">
-                                <div class="form-group">
-                                    <label for="#">Fecha de entrada</label>
-                                    <div class="form-field">
-                                    <div class="icon"><span class="far fa-calendar-alt"></span></div>
-                                <input type="text" class="form-control checkin_date" placeholder="Fecha de entrada">
-                            </div>
-                        </div>
-                            </div>
-                            <div class="col-lg align-items-end">
-                                <div class="form-group">
-                                    <label for="#">Fecha de salida</label>
-                                    <div class="form-field">
-                                    <div class="icon"><span class="far fa-calendar-alt"></span></div>
-                                <input type="text" class="form-control checkout_date" placeholder="Fecha de salida">
-                            </div>
-                        </div>
-                            </div>
-                            <div class="col-lg align-items-end">
-                                <div class="form-group">
-                                    <label for="#">Límite de precio</label>
-                                    <div class="form-field">
-                                    <div class="select-wrap">
-                            <div class="icon"><span class="fas fa-chevron-down"></span></div>
-                            <select name="" id="" class="form-control">
-                                <option value="">S/. 5,000</option>
-                                <option value="">S/. 10,000</option>
-                                <option value="">S/. 50,000</option>
-                                <option value="">S/. 100,000</option>
-                                <option value="">S/. 200,000</option>
-                                <option value="">S/. 300,000</option>
-                                <option value="">S/. 400,000</option>
-                                <option value="">S/. 500,000</option>
-                                <option value="">S/. 600,000</option>
-                                <option value="">S/. 700,000</option>
-                                <option value="">S/. 800,000</option>
-                                <option value="">S/. 900,000</option>
-                                <option value="">S/. 1,000,000</option>
-                                <option value="">S/. 2,000,000</option>
-                            </select>
-                            </div>
-                            </div>
-                        </div>
-                            </div>
-                            <div class="col-lg align-self-end">
-                                <div class="form-group">
-                                    <div class="form-field">
-                                <input type="submit" value="Buscar" class="form-control btn btn-primary">
-                            </div>
-                        </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                    </div>
-            </div>
-        </div>
-    </section>
-    <!-- FIN DE LA SECCIÓN DE BÚSQUEDA -->
 
     <!-- SECCIÓN DE LA LISTA DE DESTINOS -->
     <section class="ftco-section ftco-no-pt">
@@ -206,203 +103,28 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Machu_Picchu.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 500 / persona</span>
-                            <span class="days">Tour 2 días</span>
-                            <h3><a href="#">Machu Picchu</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Cusco, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-landmark"></span>Maravilla del Mundo</li>
-                            </ul>
+                @foreach (var region in Model)
+                {
+                    foreach (var destino in region.Destinos)
+                    {
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-wrap">
+                                <a href="#" class="img" style="background-image: url('@Url.Content(destino.ImgDest_url)');"></a>
+                                <div class="text p-4">
+                                    <span class="price">S/. @destino.precio_tour.ToString("0.00") / persona</span>
+                                    <span class="days">@destino.time_tour</span>
+                                    <h3><a href="#">@destino.nom_destino</a></h3>
+                                    <p class="location"><span class="fas fa-map-marker-alt"></span> @region.desc_region.Split('-')[0].Trim(), Perú</p>
+                                    <ul>
+                                        <li><span class="fas fa-ticket-alt"></span>@destino.num_entradas entradas</li>
+                                        <li><span class="fas fa-clock"></span>@destino.time_tour</li>
+                                        <li><span class="fas fa-map-marked-alt"></span>@destino.desc_destino.Substring(0, Math.Min(destino.desc_destino.Length, 30))...</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Canon_Colca.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 8 días</span>
-                            <h3><a href="#">Cañón del Colca</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Arequipa, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-mountain"></span>Mirador del Cóndor</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Islas_Ballestas.jpeg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 10 días</span>
-                            <h3><a href="#">Islas Ballestas</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Ica, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-umbrella-beach"></span>Reserva natural</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Huacachina.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 8 días</span>
-                            <h3><a href="#">Huacachina</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Ica, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-umbrella-beach"></span>Oasis en el desierto</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Plaza_Lima.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 10 días</span>
-                            <h3><a href="#">Plaza de Armas de Lima</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Lima, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-landmark"></span>Centro histórico</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Monasterior_Santa_Catalina.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 7 días</span>
-                            <h3><a href="#">Monasterio de Santa Catalina</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Arequipa, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-church"></span>Arquitectura colonial</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Volcan_Misti.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 8 días</span>
-                            <h3><a href="#">Volcán Misti</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Arequipa, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-mountain"></span>Volcán emblemático</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Parque_Reserva.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 10 días</span>
-                            <h3><a href="#">Parque de la Reserva</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Lima, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-water"></span>Espectáculo de luces</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Sacsayhuamán.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 200 / persona</span>
-                            <span class="days">Tour 1 día</span>
-                            <h3><a href="#">Sacsayhuamán</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Cusco, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>1 baño</li>
-                                <li><span class="fas fa-bed"></span>2 habitaciones</li>
-                                <li><span class="fas fa-landmark"></span>Fortaleza Inca</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Barranco.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 8 días</span>
-                            <h3><a href="#">Barranco</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Lima, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-palette"></span>Barrio bohemio</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Nazca.jpg")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 300 / persona</span>
-                            <span class="days">Tour 10 días</span>
-                            <h3><a href="#">Nazca</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Ica, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-globe-americas"></span>Líneas de Nazca</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url('@Url.Content("~/Lista_Tours/images/Destino_Valle_Sagrado.avif")');"></a>
-                        <div class="text p-4">
-                            <span class="price">S/. 350 / persona</span>
-                            <span class="days">Tour 1 día</span>
-                            <h3><a href="#">Valle Sagrado</a></h3>
-                            <p class="location"><span class="fas fa-map-marker-alt"></span> Cusco, Perú</p>
-                            <ul>
-                                <li><span class="fas fa-shower"></span>2 baños</li>
-                                <li><span class="fas fa-bed"></span>3 habitaciones</li>
-                                <li><span class="fas fa-mountain"></span>Paisajes andinos</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
             <div class="row mt-5">
                 <div class="col text-center">
