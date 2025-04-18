@@ -175,3 +175,120 @@
         font-size: 1rem;
     }
 }
+
+
+
+
+/* ESTILOS PARA TESTIMONIOS */
+.testimony-section {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+    padding: 7em 0;
+}
+
+.testimony-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.testimony-section .heading-section-white h2 {
+    color: #fff;
+}
+
+.testimony-section .carousel-testimony .owl-stage-outer {
+    padding: 1em 0 2em 0;
+    position: relative;
+}
+
+.testimony-wrap {
+    background: #fff;
+    padding: 30px;
+    margin: 0 15px;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+.testimony-wrap .user-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+}
+
+.testimony-wrap .quote {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 40px;
+    height: 40px;
+    background: #ff7b00;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.testimony-wrap .name {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 0;
+    color: #000;
+}
+
+.testimony-wrap .position {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Estilos para el carrusel */
+.ftco-owl {
+    position: relative;
+}
+
+.ftco-owl .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+
+.ftco-owl .owl-prev,
+.ftco-owl .owl-next {
+    position: absolute;
+    transform: translateY(-50%);
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: 0.7s;
+}
+
+.ftco-owl .owl-prev:hover,
+.ftco-owl .owl-next:hover {
+    background: #ff7b00 !important;
+}
+
+.ftco-owl .owl-prev {
+    left: -30px;
+}
+
+.ftco-owl .owl-next {
+    right: -30px;
+}
+
+.ftco-owl .owl-prev span,
+.ftco-owl .owl-next span {
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

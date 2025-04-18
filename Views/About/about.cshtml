@@ -1,0 +1,301 @@
+@{
+    Layout = null;
+    ViewBag.Title = "Sobre Nosotros";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- ANIMACIONES -->
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/open-iconic-bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/animate.css")">
+
+    <!-- ESTILOS PRINCIPALES -->
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/bootstrap_style.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/styles.css")">
+
+    <!-- ESTILOS DE LIBRERIAS -->
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/bootstrap-datepicker.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/jquery.timepicker.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/owl.carousel.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/owl.theme.default.min.css")">
+
+    <!-- ÍCONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- INICIO DE NAVEGADOR -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <img src="@Url.Content("~/Lista_Tours/images/LogoTravel.png")" alt="">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fas fa-bars"></span> Menú
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link">INICIO</a></li>
+                    <li class="nav-item active"><a href="#" class="nav-link">NOSOTROS</a></li>
+                    <li class="nav-item"><a href="@Url.Action("destination", "ListaTours")" class="nav-link">TOURS</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">GUIA DE VIAJES</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">BLOG</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">CONTACTO</a></li>
+                    <li class="nav-item cta"><a href="#" class="nav-link"><i class="fa-solid fa-user"></i> INGRESAR</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- FIN DE NAVEGADOR -->
+    
+    <!-- INICIO DE BANNER -->
+    <section class="hero-wrap hero-wrap-2 " style="background-image: url('@Url.Content("~/Lista_Tours/images/bg_1.jpg")');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <h1 class="mb-3 bread">Sobre Nosotros</h1>
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="@Url.Action("Index", "Home")">Inicio <i class="fas fa-arrow-right"></i></a></span> 
+                        <span>Sobre Nosotros <i class="fas fa-arrow-right"></i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE BANNER -->
+
+    <!-- INICIO SECCIÓN SOBRE NOSOTROS -->
+    <section class="ftco-section services-section bg-light">
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate">
+            <h2 class="mb-4">Es hora de comenzar tu aventura</h2>
+            <p>Un pequeño río llamado Duden fluye por su lugar y lo abastece con los regelialia necesarios. Es un país paradisíaco, en el que las partes asadas de las frases vuelan a tu boca.</p>
+            <p>Muy lejos, detrás de las montañas de palabras, lejos de los países Vokalia y Consonantia, viven los textos ciegos. Separados viven en Bookmarksgrove justo en la costa de la Semántica, un gran océano de lenguaje.</p>
+            <p><a href="#" class="btn btn-primary py-3 px-4">Buscar Destino</a></p>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block">
+                  <div class="icon"><span class="fas fa-parachute-box"></span></div>
+                  <div class="media-body">
+                    <h3 class="heading mb-3">Actividades</h3>
+                    <p>Un pequeño río llamado Duden fluye por su lugar y lo abastece con los regelialia necesarios</p>
+                  </div>
+                </div>      
+              </div>
+              <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block">
+                  <div class="icon"><span class="fas fa-route"></span></div>
+                  <div class="media-body">
+                    <h3 class="heading mb-3">Arreglos de Viaje</h3>
+                    <p>Un pequeño río llamado Duden fluye por su lugar y lo abastece con los regelialia necesarios</p>
+                  </div>
+                </div>    
+              </div>
+              <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block">
+                  <div class="icon"><span class="fas fa-user-tie"></span></div>
+                  <div class="media-body">
+                    <h3 class="heading mb-3">Guía Privado</h3>
+                    <p>Un pequeño río llamado Duden fluye por su lugar y lo abastece con los regelialia necesarios</p>
+                  </div>
+                </div>      
+              </div>
+              <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block">
+                  <div class="icon"><span class="fas fa-map-marked-alt"></span></div>
+                  <div class="media-body">
+                    <h3 class="heading mb-3">Gestor de Ubicación</h3>
+                    <p>Un pequeño río llamado Duden fluye por su lugar y lo abastece con los regelialia necesarios</p>
+                  </div>
+                </div>      
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FIN SECCIÓN SOBRE NOSOTROS -->
+
+    <!-- INICIO SECCIÓN ESTADÍSTICAS -->
+    <section class="ftco-counter img" id="section-counter">
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col-md-6 d-flex">
+            <div class="img d-flex align-self-stretch" style="background-image:url(@Url.Content("~/Lista_Tours/images/about.jpg"));"></div>
+          </div>
+          <div class="col-md-6 pl-md-5 py-5">
+            <div class="row justify-content-start pb-3">
+              <div class="col-md-12 heading-section ftco-animate">
+                <h2 class="mb-4">Haz tu tour memorable y seguro con nosotros</h2>
+                <p>Muy lejos, detrás de las montañas de palabras, lejos de los países Vokalia y Consonantia, viven los textos ciegos. Separados viven en Bookmarksgrove justo en la costa de la Semántica, un gran océano de lenguaje.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 text-center mb-4">
+                  <div class="text">
+                    <strong class="number" data-number="300">0</strong>
+                    <span>Tours Exitosos</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 text-center mb-4">
+                  <div class="text">
+                    <strong class="number" data-number="24000">0</strong>
+                    <span>Turistas Felices</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 text-center mb-4">
+                  <div class="text">
+                    <strong class="number" data-number="200">0</strong>
+                    <span>Lugares Explorados</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FIN SECCIÓN ESTADÍSTICAS -->
+
+    <!-- INICIO SECCIÓN TESTIMONIOS -->
+    <section class="ftco-section testimony-section bg-bottom" style="background-image: url(@Url.Content("~/Lista_Tours/images/bg_3.jpg"));">
+        <div class="container">
+            <div class="row justify-content-center pb-4">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+                <h2 class="mb-4">Comentarios de Turistas</h2>
+            </div>
+            </div>
+            <div class="row ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel ftco-owl">
+                <div class="item">
+                    <div class="testimony-wrap py-4">
+                    <div class="text">
+                        <p class="mb-4">Muy lejos, detrás de las montañas de palabras, lejos de los países Vokalia y Consonantia, viven los textos ciegos.</p>
+                        <div class="d-flex align-items-center">
+                        <div class="user-img" style="background-image: url(@Url.Content("~/Lista_Tours/images/person_1.jpg"))"></div>
+                        <div class="pl-3">
+                            <p class="name">Roger Scott</p>
+                            <span class="position">Gerente de Marketing</span>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimony-wrap py-4">
+                    <div class="text">
+                        <p class="mb-4">Muy lejos, detrás de las montañas de palabras, lejos de los países Vokalia y Consonantia, viven los textos ciegos.</p>
+                        <div class="d-flex align-items-center">
+                        <div class="user-img" style="background-image: url(@Url.Content("~/Lista_Tours/images/person_2.jpg"))"></div>
+                        <div class="pl-3">
+                            <p class="name">Roger Scott</p>
+                            <span class="position">Gerente de Marketing</span>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimony-wrap py-4">
+                    <div class="text">
+                        <p class="mb-4">Muy lejos, detrás de las montañas de palabras, lejos de los países Vokalia y Consonantia, viven los textos ciegos.</p>
+                        <div class="d-flex align-items-center">
+                        <div class="user-img" style="background-image: url(@Url.Content("~/Lista_Tours/images/person_3.jpg"))"></div>
+                        <div class="pl-3">
+                            <p class="name">Roger Scott</p>
+                            <span class="position">Gerente de Marketing</span>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN SECCIÓN TESTIMONIOS -->
+
+    <!-- INICIO DEL PIE DE PÁGINA -->
+    <footer class="ftco-footer bg-bottom" style="background-image: url('@Url.Content("~/Lista_Tours/images/footer-bg.jpg")');">
+        <div class="container">
+            <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                <img src="@Url.Content("~/Lista_Tours/images/LogoTravel.png")" alt="" style="margin-bottom: 40px;">
+                <p>Descubre Perú con nosotros y vive experiencias inolvidables. Ofrecemos tours seguros, organizados y llenos de aventura. ¡Tu próxima gran historia comienza aquí!</p>
+                <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-instagram"></span></a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                <h2 class="ftco-heading-2">Links Interno</h2>
+                <ul class="list-unstyled">
+                    <li><a href="@Url.Action("Index", "Home")" class="py-2 d-block">Inicio</a></li>
+                    <li><a href="#" class="py-2 d-block">Sobre la Agencia</a></li>
+                    <li><a href="@Url.Action("destination", "ListaTours")" class="py-2 d-block">Listado de Tours</a></li>
+                    <li><a href="#" class="py-2 d-block">Blog</a></li>
+                    <li><a href="#" class="py-2 d-block">Contacto</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Otras Secciones</h2>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="py-2 d-block">Registra Tu Cuenta</a></li>
+                    <li><a href="#" class="py-2 d-block">Preguntas Frecuentes</a></li>
+                    <li><a href="#" class="py-2 d-block">Términos y Condiciones</a></li>
+                    <li><a href="#" class="py-2 d-block">Medios de Pago</a></li>
+                    <li><a href="#" class="py-2 d-block">Revisar Reseñas</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">¿Tienes preguntas?</h2>
+                    <div class="block-23 mb-3">
+                    <ul>
+                        <li><span class="icon fas fa-map-marker-alt"></span><span class="text">Av. Benavides 250 Surco</span></li>
+                        <li><a href="#"><span class="icon fas fa-phone"></span><span class="text">+51 6508000</span></a></li>
+                        <li><a href="#"><span class="icon far fa-clock"></span>				<span class="text"><p class="mb-0"> Lunes – Sábado: 8 am – 5 pm,<br> Domingos: <span class="text-white d-inline-block">Cerrado</span></p></span></a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FIN DEL PIE DE PÁGINA -->
+
+    <!-- SCRIPTS NECESARIOS -->	
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery-migrate-3.0.1.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.waypoints.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.stellar.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.magnific-popup.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/aos.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.animateNumber.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/scrollax.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/main.js")"></script>
+</body>
+</html>

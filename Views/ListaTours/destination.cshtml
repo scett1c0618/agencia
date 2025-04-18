@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link">INICIO</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">NOSOTROS</a></li>
+                    <li class="nav-item"><a href="@Url.Action("about", "About")" class="nav-link">NOSOTROS</a></li>
                     <li class="nav-item active"><a href="#" class="nav-link">TOURS</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">GUIA DE VIAJES</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">BLOG</a></li>
@@ -164,9 +164,9 @@
                 <div class="ftco-footer-widget mb-4 ml-md-5">
                 <h2 class="ftco-heading-2">Links Interno</h2>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="py-2 d-block">Inicio</a></li>
-                    <li><a href="#" class="py-2 d-block">Sobre la Agencia</a></li>
-                    <li><a href="destination.html" class="py-2 d-block">Listado de Tours</a></li>
+                    <li><a href="@Url.Action("Index", "Home")" class="py-2 d-block">Inicio</a></li>
+                    <li><a href="@Url.Action("about", "About")" class="py-2 d-block">Sobre la Agencia</a></li>
+                    <li><a href="@Url.Action("destination", "ListaTours")" class="py-2 d-block">Listado de Tours</a></li>
                     <li><a href="#" class="py-2 d-block">Blog</a></li>
                     <li><a href="#" class="py-2 d-block">Contacto</a></li>
                 </ul>
