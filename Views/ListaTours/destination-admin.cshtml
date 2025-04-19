@@ -1,0 +1,217 @@
+@model List<appAgencia.Models.Region>
+@{
+    Layout = null;
+    ViewBag.Title = "Destinos a Visitar";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- ANIMACIONES -->
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/open-iconic-bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/animate.css")">
+
+    <!-- ESTILOS PRINCIPALES -->
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/bootstrap_style.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/styles.css")">
+
+    <!-- ESTILOS DE LIBRERIAS -->
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/bootstrap-datepicker.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/jquery.timepicker.css")">
+
+    <!-- ÍCONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- INICIO DE NAVEGADOR -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <img src="@Url.Content("~/Lista_Tours/images/LogoTravel.png")" alt="">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fas fa-bars"></span> Menú
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link">INICIO</a></li>
+                    <li class="nav-item"><a href="@Url.Action("about", "About")" class="nav-link">NOSOTROS</a></li>
+                    <li class="nav-item active"><a href="#" class="nav-link">TOURS</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">GUIA DE VIAJES</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">BLOG</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">CONTACTO</a></li>
+                    <li class="nav-item cta"><a href="#" class="nav-link"><i class="fa-solid fa-user"></i> INGRESAR</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- FIN DE NAVEGADOR -->
+    
+    <!-- INICIO DE BANNER -->
+    <section class="hero-wrap hero-wrap-2 " style="background-image: url('@Url.Content("~/Lista_Tours/images/bg_1.jpg")');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <h1 class="mb-3 bread">Lugares para Viajar</h1>
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="@Url.Action("Index", "Home")">Inicio <i class="fas fa-arrow-right"></i></a></span> 
+                        <span>Guía de Viajes <i class="fas fa-arrow-right"></i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE BANNER -->
+
+    <!-- INICIO DE LOS MEJORES DESTINOS DE VIAJE-->
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center pb-4">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Mejores Destinos</h2>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var region in Model.Take(4))
+                {
+                    <div class="col-md-3 ftco-animate">
+                        <div class="project-destination">
+                            <a href="#" class="img" style="background-image: url('@Url.Content(region.ImgReg_url)');">
+                                <div class="text">
+                                    <h3>@region.desc_region.Split('-')[0].Trim()</h3>
+                                    <span>@region.num_tours Tours</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE LOS MEJORES DESTINOS DE VIAJE -->
+
+    <!-- SECCIÓN DE LA LISTA DE DESTINOS -->
+    <section class="ftco-section ftco-no-pt">
+        <div class="container">
+            <div class="row justify-content-center pb-4">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Destinos Turísticos</h2>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var region in Model)
+                {
+                    foreach (var destino in region.Destinos)
+                    {
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-wrap">
+                                <a href="#" class="img" style="background-image: url('@Url.Content(destino.ImgDest_url)');"></a>
+                                <div class="text p-4">
+                                    <span class="price">S/. @destino.precio_tour.ToString("0.00") / persona</span>
+                                    <span class="days">@destino.time_tour</span>
+                                    <h3><a href="#">@destino.nom_destino</a></h3>
+                                    <p class="location"><span class="fas fa-map-marker-alt"></span> @region.desc_region.Split('-')[0].Trim(), Perú</p>
+                                    <ul>
+                                        <li><span class="fas fa-ticket-alt"></span>@destino.num_entradas entradas</li>
+                                        <li><span class="fas fa-clock"></span>@destino.time_tour</li>
+                                        <li><span class="fas fa-map-marked-alt"></span>@destino.desc_destino.Substring(0, Math.Min(destino.desc_destino.Length, 30))...</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#">&lt;</a></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE LA LISTA DE DESTINOS -->
+
+    <!-- INICIO DEL PIE DE PÁGINA -->
+    <footer class="ftco-footer bg-bottom" style="background-image: url('@Url.Content("~/Lista_Tours/images/footer-bg.jpg")');">
+        <div class="container">
+            <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                <img src="@Url.Content("~/Lista_Tours/images/LogoTravel.png")" alt="" style="margin-bottom: 40px;">
+                <p>Descubre Perú con nosotros y vive experiencias inolvidables. Ofrecemos tours seguros, organizados y llenos de aventura. ¡Tu próxima gran historia comienza aquí!</p>
+                <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="fab fa-instagram"></span></a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                <h2 class="ftco-heading-2">Links Interno</h2>
+                <ul class="list-unstyled">
+                    <li><a href="@Url.Action("Index", "Home")" class="py-2 d-block">Inicio</a></li>
+                    <li><a href="@Url.Action("about", "About")" class="py-2 d-block">Sobre la Agencia</a></li>
+                    <li><a href="@Url.Action("destination", "ListaTours")" class="py-2 d-block">Listado de Tours</a></li>
+                    <li><a href="#" class="py-2 d-block">Blog</a></li>
+                    <li><a href="#" class="py-2 d-block">Contacto</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Otras Secciones</h2>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="py-2 d-block">Registra Tu Cuenta</a></li>
+                    <li><a href="#" class="py-2 d-block">Preguntas Frecuentes</a></li>
+                    <li><a href="#" class="py-2 d-block">Términos y Condiciones</a></li>
+                    <li><a href="#" class="py-2 d-block">Medios de Pago</a></li>
+                    <li><a href="#" class="py-2 d-block">Revisar Reseñas</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">¿Tienes preguntas?</h2>
+                    <div class="block-23 mb-3">
+                    <ul>
+                        <li><span class="icon fas fa-map-marker-alt"></span><span class="text">Av. Benavides 250 Surco</span></li>
+                        <li><a href="#"><span class="icon fas fa-phone"></span><span class="text">+51 6508000</span></a></li>
+                        <li><a href="#"><span class="icon far fa-clock"></span>				<span class="text"><p class="mb-0"> Lunes – Sábado: 8 am – 5 pm,<br> Domingos: <span class="text-white d-inline-block">Cerrado</span></p></span></a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FIN DEL PIE DE PÁGINA -->
+
+    <!-- SCRIPTS NECESARIOS -->	
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery-migrate-3.0.1.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.waypoints.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.stellar.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.magnific-popup.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/aos.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/jquery.animateNumber.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/scrollax.min.js")"></script>
+    <script src="@Url.Content("~/Lista_Tours/js/main.js")"></script>
+</body>
+</html>
