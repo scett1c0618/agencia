@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore; // ¡Importante para Include()!
+using Microsoft.AspNetCore.Authorization;
 using appAgencia.Data;
+using appAgencia.Models;
 
 
 [Authorize(Roles = "Admin")]
@@ -41,7 +43,7 @@ public class AdminController : Controller
         var region = _context.Regiones.Find(id);
         if (region == null)
         {
-            return HttpNotFound();
+            return NotFound();
         }
         return View(region);
     }

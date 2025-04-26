@@ -3,9 +3,9 @@ using appAgencia.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración de la base de datos SQLite
+// Configuración de la base de datos PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllersWithViews();
 
