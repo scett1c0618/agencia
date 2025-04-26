@@ -1,7 +1,7 @@
 @model List<appAgencia.Models.Region>
 @{
     Layout = null;
-    ViewBag.Title = "Destinos a Visitar";
+    ViewBag.Title = "Administración de Destinos";
 }
 
 <!DOCTYPE html>
@@ -25,6 +25,28 @@
 
     <!-- ÍCONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ESTILOS ADICIONALES PARA ADMIN -->
+    <style>
+        .admin-actions {
+            margin: 10px 0;
+        }
+        .admin-actions a {
+            margin-right: 10px;
+        }
+        .crud-buttons {
+            margin-top: 10px;
+        }
+        .crud-buttons a, .crud-buttons button {
+            margin-right: 5px;
+        }
+        .admin-panel {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -43,36 +65,39 @@
                     <li class="nav-item"><a href="#" class="nav-link">GUIA DE VIAJES</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">BLOG</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">CONTACTO</a></li>
-                    <li class="nav-item cta"><a href="#" class="nav-link"><i class="fa-solid fa-user"></i> INGRESAR</a></li>
+                    <li class="nav-item cta">
+                        <a href="@Url.Action("Logout", "Account")" class="nav-link">
+                            <i class="fa-solid fa-sign-out-alt"></i> SALIR
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- FIN DE NAVEGADOR -->
     
-    <!-- INICIO DE BANNER -->
-    <section class="hero-wrap hero-wrap-2 " style="background-image: url('@Url.Content("~/Lista_Tours/images/bg_1.jpg")');" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-                <div class="col-md-9 ftco-animate pb-5 text-center">
-                    <h1 class="mb-3 bread">Lugares para Viajar</h1>
-                    <p class="breadcrumbs">
-                        <span class="mr-2"><a href="@Url.Action("Index", "Home")">Inicio <i class="fas fa-arrow-right"></i></a></span> 
-                        <span>Guía de Viajes <i class="fas fa-arrow-right"></i></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- FIN DE BANNER -->
-
-    <!-- INICIO DE LOS MEJORES DESTINOS DE VIAJE-->
+    <!-- PANEL DE ADMINISTRACIÓN -->
     <section class="ftco-section">
         <div class="container">
+            <div class="admin-panel">
+                <h2 class="mb-4">Panel de Administración</h2>
+                <div class="admin-actions">
+                    <a href="@Url.Action("CreateRegion", "Admin")" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Agregar Región
+                    </a>
+                    <a href="@Url.Action("CreateDestino", "Admin")" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Agregar Destino
+                    </a>
+                    <a href="@Url.Action("Index", "Admin")" class="btn btn-info">
+                        <i class="fas fa-cog"></i> Panel Principal
+                    </a>
+                </div>
+            </div>
+            
+            <!-- INICIO DE LOS MEJORES DESTINOS DE VIAJE-->
             <div class="row justify-content-center pb-4">
                 <div class="col-md-12 heading-section text-center ftco-animate">
-                    <h2 class="mb-4">Mejores Destinos</h2>
+                    <h2 class="mb-4">Administración de Destinos</h2>
                 </div>
             </div>
             <div class="row">
@@ -86,20 +111,27 @@
                                     <span>@region.num_tours Tours</span>
                                 </div>
                             </a>
+                            <div class="crud-buttons text-center">
+                                <a href="@Url.Action("EditRegion", "Admin", new { id = region.id_region })" class="btn btn-sm btn-warning">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                                <form action="@Url.Action("DeleteRegion", "Admin", new { id = region.id_region })" method="post" style="display: inline;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta región?');">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 }
             </div>
-        </div>
-    </section>
-    <!-- FIN DE LOS MEJORES DESTINOS DE VIAJE -->
+            <!-- FIN DE LOS MEJORES DESTINOS DE VIAJE -->
 
-    <!-- SECCIÓN DE LA LISTA DE DESTINOS -->
-    <section class="ftco-section ftco-no-pt">
-        <div class="container">
+            <!-- SECCIÓN DE LA LISTA DE DESTINOS -->
             <div class="row justify-content-center pb-4">
                 <div class="col-md-12 heading-section text-center ftco-animate">
-                    <h2 class="mb-4">Destinos Turísticos</h2>
+                    <h2 class="mb-4">Administración de Tours</h2>
                 </div>
             </div>
             <div class="row">
@@ -120,26 +152,22 @@
                                         <li><span class="fas fa-clock"></span>@destino.time_tour</li>
                                         <li><span class="fas fa-map-marked-alt"></span>@destino.desc_destino.Substring(0, Math.Min(destino.desc_destino.Length, 30))...</li>
                                     </ul>
+                                    <div class="crud-buttons">
+                                        <a href="@Url.Action("EditDestino", "Admin", new { id = destino.id_destino })" class="btn btn-sm btn-warning">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </a>
+                                        <form action="@Url.Action("DeleteDestino", "Admin", new { id = destino.id_destino })" method="post" style="display: inline;">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este destino?');">
+                                                <i class="fas fa-trash"></i> Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     }
                 }
-            </div>
-            <div class="row mt-5">
-                <div class="col text-center">
-                    <div class="block-27">
-                        <ul>
-                            <li><a href="#">&lt;</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&gt;</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -149,53 +177,12 @@
     <footer class="ftco-footer bg-bottom" style="background-image: url('@Url.Content("~/Lista_Tours/images/footer-bg.jpg")');">
         <div class="container">
             <div class="row mb-5">
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                <img src="@Url.Content("~/Lista_Tours/images/LogoTravel.png")" alt="" style="margin-bottom: 40px;">
-                <p>Descubre Perú con nosotros y vive experiencias inolvidables. Ofrecemos tours seguros, organizados y llenos de aventura. ¡Tu próxima gran historia comienza aquí!</p>
-                <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                    <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
-                    <li class="ftco-animate"><a href="#"><span class="fab fa-facebook"></span></a></li>
-                    <li class="ftco-animate"><a href="#"><span class="fab fa-instagram"></span></a></li>
-                </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4 ml-md-5">
-                <h2 class="ftco-heading-2">Links Interno</h2>
-                <ul class="list-unstyled">
-                    <li><a href="@Url.Action("Index", "Home")" class="py-2 d-block">Inicio</a></li>
-                    <li><a href="@Url.Action("about", "About")" class="py-2 d-block">Sobre la Agencia</a></li>
-                    <li><a href="@Url.Action("destination", "ListaTours")" class="py-2 d-block">Listado de Tours</a></li>
-                    <li><a href="#" class="py-2 d-block">Blog</a></li>
-                    <li><a href="#" class="py-2 d-block">Contacto</a></li>
-                </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                <h2 class="ftco-heading-2">Otras Secciones</h2>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="py-2 d-block">Registra Tu Cuenta</a></li>
-                    <li><a href="#" class="py-2 d-block">Preguntas Frecuentes</a></li>
-                    <li><a href="#" class="py-2 d-block">Términos y Condiciones</a></li>
-                    <li><a href="#" class="py-2 d-block">Medios de Pago</a></li>
-                    <li><a href="#" class="py-2 d-block">Revisar Reseñas</a></li>
-                </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">¿Tienes preguntas?</h2>
-                    <div class="block-23 mb-3">
-                    <ul>
-                        <li><span class="icon fas fa-map-marker-alt"></span><span class="text">Av. Benavides 250 Surco</span></li>
-                        <li><a href="#"><span class="icon fas fa-phone"></span><span class="text">+51 6508000</span></a></li>
-                        <li><a href="#"><span class="icon far fa-clock"></span>				<span class="text"><p class="mb-0"> Lunes – Sábado: 8 am – 5 pm,<br> Domingos: <span class="text-white d-inline-block">Cerrado</span></p></span></a></li>
-                    </ul>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <img src="@Url.Content("~/Lista_Tours/images/LogoTravel.png")" alt="" style="margin-bottom: 40px;">
+                        <p>Panel de Administración - © @DateTime.Now.Year Travel Agency</p>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </footer>
@@ -213,5 +200,13 @@
     <script src="@Url.Content("~/Lista_Tours/js/jquery.animateNumber.min.js")"></script>
     <script src="@Url.Content("~/Lista_Tours/js/scrollax.min.js")"></script>
     <script src="@Url.Content("~/Lista_Tours/js/main.js")"></script>
+    
+    <!-- Scripts adicionales para confirmaciones -->
+    <script>
+        $(document).ready(function() {
+            // Puedes agregar aquí cualquier funcionalidad JavaScript adicional
+            // para el panel de administración si es necesario
+        });
+    </script>
 </body>
 </html>
