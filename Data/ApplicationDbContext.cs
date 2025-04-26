@@ -21,5 +21,7 @@ namespace appAgencia.Data
                 .WithMany(r => r.Destinos)
                 .HasForeignKey(d => d.id_region);
         }
+        public DbSet<Usuario> Usuarios { get; set; }
+
     }
 }
