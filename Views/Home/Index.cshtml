@@ -114,22 +114,9 @@
         <h2>Destinos favoritos, experiencias inolvidables</h2>
 
         <div class="row">
-        @foreach (var tour in Model)
-        {
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="@tour.ImagenUrl" class="card-img-top" alt="@tour.Titulo" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">@tour.Titulo</h5>
-                        <p class="card-text">Región: @tour.Region</p>
-                        <p class="card-text text-primary fw-bold">Desde S/ @tour.Precio</p>
-                        <a href="/Tours/Detalles/@tour.Id" class="btn btn-outline-primary btn-sm">
-                            Ver más
-                        </a>
-                    </div>
-                </div>
-            </div>
-        }
+
+
+
         </div>
         
         <button>Ver toda la lista de tours</button>
