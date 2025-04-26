@@ -21,26 +21,14 @@ body {
   margin-bottom: 60px;
 }
 
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
 
 
 .logo {margin-right: 50px;}
@@ -56,10 +44,6 @@ h2 {font-size: 36px; font-weight: 700; margin-bottom: 40px;}
   padding: 6px 15px;
   border-radius: 6px;}
 
-
-
-
-  
 
   .section-slider {background-image: url(../images/bg-slider.jpg); min-height: 700px; background-size: cover; display: flex;
     align-items: center;}
