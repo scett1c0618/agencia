@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using appAgencia.Data;
@@ -11,9 +12,11 @@ using appAgencia.Data;
 namespace appAgencia.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250502213343_AddFestividadTable")]
+    partial class AddFestividadTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace appAgencia.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("appAgencia.Models.Actividad", b =>
+            modelBuilder.Entity("Actividad", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +56,73 @@ namespace appAgencia.Data.Migrations
 
                     b.HasIndex("EventoId");
 
-                    b.ToTable("Actividades");
+                    b.ToTable("Actividad");
+                });
+
+            modelBuilder.Entity("Evento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("text");
+
+                    b.Property<int>("FestividadId")
+                        .HasColumnType("integer");
+
+                    b.Property<TimeSpan?>("Hora")
+                        .HasColumnType("interval");
+
+                    b.Property<int>("IdFestividad")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Lugar")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FestividadId");
+
+                    b.ToTable("Evento");
+                });
+
+            modelBuilder.Entity("Festividad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ImagenUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Lugar")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Festividades");
                 });
 
             modelBuilder.Entity("appAgencia.Models.Destino", b =>
@@ -98,72 +167,6 @@ namespace appAgencia.Data.Migrations
                     b.HasIndex("id_region");
 
                     b.ToTable("Destinos");
-                });
-
-            modelBuilder.Entity("appAgencia.Models.Evento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("text");
-
-                    b.Property<int>("FestividadId")
-                        .HasColumnType("integer");
-
-                    b.Property<TimeSpan?>("Hora")
-                        .HasColumnType("interval");
-
-                    b.Property<int>("IdFestividad")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Lugar")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FestividadId");
-
-                    b.ToTable("Eventos");
-                });
-
-            modelBuilder.Entity("appAgencia.Models.Festividad", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ImagenUrl")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Lugar")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Tipo")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Festividades");
                 });
 
             modelBuilder.Entity("appAgencia.Models.Region", b =>
@@ -220,15 +223,26 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Actividad", b =>
+            modelBuilder.Entity("Actividad", b =>
                 {
-                    b.HasOne("appAgencia.Models.Evento", "Evento")
+                    b.HasOne("Evento", "Evento")
                         .WithMany("Actividades")
                         .HasForeignKey("EventoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Evento");
+                });
+
+            modelBuilder.Entity("Evento", b =>
+                {
+                    b.HasOne("Festividad", "Festividad")
+                        .WithMany("Eventos")
+                        .HasForeignKey("FestividadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Festividad");
                 });
 
             modelBuilder.Entity("appAgencia.Models.Destino", b =>
@@ -242,23 +256,12 @@ namespace appAgencia.Data.Migrations
                     b.Navigation("Region");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Evento", b =>
-                {
-                    b.HasOne("appAgencia.Models.Festividad", "Festividad")
-                        .WithMany("Eventos")
-                        .HasForeignKey("FestividadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Festividad");
-                });
-
-            modelBuilder.Entity("appAgencia.Models.Evento", b =>
+            modelBuilder.Entity("Evento", b =>
                 {
                     b.Navigation("Actividades");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Festividad", b =>
+            modelBuilder.Entity("Festividad", b =>
                 {
                     b.Navigation("Eventos");
                 });
