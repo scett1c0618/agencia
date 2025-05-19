@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace appAgencia.Models
+namespace AgenciaDeViajes.Models
 {
     public class Region
     {

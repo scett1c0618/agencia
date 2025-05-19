@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace appAgencia.Controllers
+namespace AgenciaDeViajes.Controllers
 {
     public class ContactoController : Controller
     {

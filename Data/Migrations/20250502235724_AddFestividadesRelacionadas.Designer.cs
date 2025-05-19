@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using appAgencia.Data;
+using AgenciaDeViajes.Data;
 
 #nullable disable
 
-namespace appAgencia.Data.Migrations
+namespace AgenciaDeViajes.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250502235724_AddFestividadesRelacionadas")]
@@ -25,7 +25,7 @@ namespace appAgencia.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("appAgencia.Models.Actividad", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Actividad", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("Actividades");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Destino", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Destino", b =>
                 {
                     b.Property<int>("id_destino")
                         .ValueGeneratedOnAdd()
@@ -103,7 +103,7 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("Destinos");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Evento", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Evento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -137,7 +137,7 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("Eventos");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Festividad", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Festividad", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,7 +169,7 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("Festividades");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Region", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Region", b =>
                 {
                     b.Property<int>("id_region")
                         .ValueGeneratedOnAdd()
@@ -195,7 +195,7 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("Regiones");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Usuario", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Usuario", b =>
                 {
                     b.Property<int>("IdUsuario")
                         .ValueGeneratedOnAdd()
@@ -223,9 +223,9 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Actividad", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Actividad", b =>
                 {
-                    b.HasOne("appAgencia.Models.Evento", "Evento")
+                    b.HasOne("AgenciaDeViajes.Models.Evento", "Evento")
                         .WithMany("Actividades")
                         .HasForeignKey("EventoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -234,9 +234,9 @@ namespace appAgencia.Data.Migrations
                     b.Navigation("Evento");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Destino", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Destino", b =>
                 {
-                    b.HasOne("appAgencia.Models.Region", "Region")
+                    b.HasOne("AgenciaDeViajes.Models.Region", "Region")
                         .WithMany("Destinos")
                         .HasForeignKey("id_region")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -245,9 +245,9 @@ namespace appAgencia.Data.Migrations
                     b.Navigation("Region");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Evento", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Evento", b =>
                 {
-                    b.HasOne("appAgencia.Models.Festividad", "Festividad")
+                    b.HasOne("AgenciaDeViajes.Models.Festividad", "Festividad")
                         .WithMany("Eventos")
                         .HasForeignKey("FestividadId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -256,17 +256,17 @@ namespace appAgencia.Data.Migrations
                     b.Navigation("Festividad");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Evento", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Evento", b =>
                 {
                     b.Navigation("Actividades");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Festividad", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Festividad", b =>
                 {
                     b.Navigation("Eventos");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Region", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Region", b =>
                 {
                     b.Navigation("Destinos");
                 });
