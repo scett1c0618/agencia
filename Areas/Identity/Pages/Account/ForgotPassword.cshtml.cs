@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace appAgencia.Areas.Identity.Pages.Account
+namespace AgenciaDeViajes.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {

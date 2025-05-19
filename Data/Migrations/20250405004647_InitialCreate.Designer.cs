@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using appAgencia.Data;
+using AgenciaDeViajes.Data;
 
 #nullable disable
 
-namespace appAgencia.Data.Migrations
+namespace AgenciaDeViajes.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250405004647_InitialCreate")]
@@ -216,7 +216,7 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Destino", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Destino", b =>
                 {
                     b.Property<int>("id_destino")
                         .ValueGeneratedOnAdd()
@@ -257,7 +257,7 @@ namespace appAgencia.Data.Migrations
                     b.ToTable("Destinos");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Region", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Region", b =>
                 {
                     b.Property<int>("id_region")
                         .ValueGeneratedOnAdd()
@@ -331,9 +331,9 @@ namespace appAgencia.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Destino", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Destino", b =>
                 {
-                    b.HasOne("appAgencia.Models.Region", "Region")
+                    b.HasOne("AgenciaDeViajes.Models.Region", "Region")
                         .WithMany("Destinos")
                         .HasForeignKey("id_region")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -342,7 +342,7 @@ namespace appAgencia.Data.Migrations
                     b.Navigation("Region");
                 });
 
-            modelBuilder.Entity("appAgencia.Models.Region", b =>
+            modelBuilder.Entity("AgenciaDeViajes.Models.Region", b =>
                 {
                     b.Navigation("Destinos");
                 });

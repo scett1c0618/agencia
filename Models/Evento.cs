@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace appAgencia.Models
+namespace AgenciaDeViajes.Models
 {
     public class Evento
 {

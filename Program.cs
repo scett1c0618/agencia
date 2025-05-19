@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using appAgencia.Data;
+using AgenciaDeViajes.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +19,6 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();  // 👈 Esto crea/modifica tablas en Render
 }
-
-/* Reemplazar esto para trabajar con base de datos local en el archivo de appsetings.json - Jean Estrada */
-/* "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Port=5432;Database=TrabajoFinalProgra;Username=postgres;Password=posgresjeanestrada;"
-  }, */
 
 
 // Configuración del pipeline HTTP

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore; // ¡Importante para Include()!
 using Microsoft.AspNetCore.Authorization;
-using appAgencia.Data;
-using appAgencia.Models;
+using AgenciaDeViajes.Data;
+using AgenciaDeViajes.Models;
 
 
 [Authorize(Roles = "Admin")]

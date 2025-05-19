@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using appAgencia.Models;
+using AgenciaDeViajes.Models;
 
-namespace appAgencia.Data
+namespace AgenciaDeViajes.Data
 {
     public class ApplicationDbContext : DbContext
     {
