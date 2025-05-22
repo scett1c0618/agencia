@@ -1,70 +1,39 @@
-@{
-    ViewData["Title"] = "Contacto";
+@model AgenciaDeViajes.Models.ContactoViewModel
+
+<h3>Conectémonos y conozcámonos</h3>
+
+@if (ViewBag.MensajeExito != null)
+{
+    <div class="alert alert-success">@ViewBag.MensajeExito</div>
 }
 
-<style>
-    body {
-        background-color: #f0f0f0;
-    }
-    
-    .rectangulo-verde-claro {
-        background-color: #c5ecbb;
-        border-radius: 0.25rem;
-        border: 1px solid #ced4da;
-        padding: 1.5rem;
-        overflow: hidden;
-        height: auto;
-    }
-
-    .rectangulo-verde-claro img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: contain;
-        margin-top: 1rem; /* Opcional: añade un espacio entre el texto y la imagen */
-    }
-</style>
-
-<div class="container">
-    <h1>@ViewData["Title"]</h1>
-    <hr />
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="rectangulo-verde-claro">
-                <h2><b>Información:</b></h2>
-                <ul class="list-unstyled">
-                    <li><strong>Teléfono:</strong> 999888777</li>
-                    <li><strong>Email:</strong> <a href="mailto:contacto@empresa.com">contacto@empresa.com</a></li>
-                    <li><strong>Dirección:</strong> 1234 Av. Javier Prado Este, La Molina</li>
-                </ul>
-                <img src="https://www.tintasytonercompatibles.es/images/blog/como-imprimir-mapa-google-maps.jpg" alt="Mapa de cómo imprimir un mapa de Google Maps" />
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="p-4">
-                <h3>Conectémonos y conozcámonos</h3>
-                
-                <form>
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
-                    </div>
-                    <div class="mb-3">
-                        <label for="comentarios" class="form-label">Comentarios</label>
-                        <textarea class="form-control" id="comentarios" rows="3" placeholder="Escribe tu mensaje aquí"></textarea>
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="guardarInfo">
-                        <label class="form-check-label" for="guardarInfo">Guarda mi nombre y correo electrónico en este navegador para la próxima vez que comente .</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-                </form>
-            </div>
-        </div>
+<form asp-action="Index" method="post">
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
     </div>
-</div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Comentarios" class="form-label"></label>
+        <textarea asp-for="Comentarios" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Comentarios" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="guardarInfo">
+        <label class="form-check-label" for="guardarInfo">Guarda mi nombre y correo electrónico en este navegador para la próxima vez que comente.</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
