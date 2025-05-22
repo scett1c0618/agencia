@@ -1,22 +1,35 @@
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Iniciar Sesión";
 }
 
-<h2>Iniciar Sesión</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>Iniciar Sesión</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Index" method="post">
+                        <div class="form-group mb-3">
+                            <label for="nombreUsuario">Usuario:</label>
+                            <input type="text" class="form-control" name="nombreUsuario" required />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="contrasena">Contraseña:</label>
+                            <input type="password" class="form-control" name="contrasena" required />
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                        </div>
+                    </form>
 
-<form asp-controller="Login" asp-action="Index" method="post">
-    <div>
-        <label>Usuario:</label>
-        <input type="text" name="nombreUsuario" required />
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Contraseña:</label>
-        <input type="password" name="contrasena" required />
-    </div>
-    <button type="submit">Ingresar</button>
-</form>
-
-@if (ViewBag.Error != null)
-{
-    <p style="color:red;">@ViewBag.Error</p>
-}
+</div>

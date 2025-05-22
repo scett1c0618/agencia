@@ -1,0 +1,16 @@
+@model AgenciaDeViajes.Models.Usuario
+@{
+    ViewData["Title"] = "Mi Cuenta";
+}
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3>Mi Cuenta</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Nombre de usuario:</strong> @Model.NombreUsuario</p>
+            <p><strong>Rol:</strong> @Model.Rol</p>
+        </div>
+    </div>
+</div>
