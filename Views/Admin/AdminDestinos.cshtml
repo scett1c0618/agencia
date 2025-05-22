@@ -1,15 +1,8 @@
 @model List<AgenciaDeViajes.Models.Region>
 @{
-    Layout = null;
-    ViewBag.Title = "Administración de Destinos";
+    Layout = "_Layout";  // Usamos el layout compartido
+    ViewBag.Title = "Destinos a Visitar";
 }
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>@ViewBag.Title</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- ANIMACIONES -->
     <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/open-iconic-bootstrap.min.css")">
@@ -47,34 +40,6 @@
             margin-bottom: 20px;
         }
     </style>
-</head>
-<body>
-
-    <!-- INICIO DE NAVEGADOR -->
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <img src="@Url.Content("~/Lista_Tours/images/LogoTravel.png")" alt="">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fas fa-bars"></span> Menú
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link">INICIO</a></li>
-                    <li class="nav-item"><a href="@Url.Action("about", "About")" class="nav-link">NOSOTROS</a></li>
-                    <li class="nav-item active"><a href="#" class="nav-link">TOURS</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">GUIA DE VIAJES</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">BLOG</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">CONTACTO</a></li>
-                    <li class="nav-item cta">
-                        <a href="@Url.Action("Logout", "Account")" class="nav-link">
-                            <i class="fa-solid fa-sign-out-alt"></i> SALIR
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- FIN DE NAVEGADOR -->
     
     <!-- PANEL DE ADMINISTRACIÓN -->
     <section class="ftco-section">
@@ -173,21 +138,8 @@
     </section>
     <!-- FIN DE LA LISTA DE DESTINOS -->
 
-    <!-- INICIO DEL PIE DE PÁGINA -->
-    <footer class="ftco-footer bg-bottom" style="background-image: url('@Url.Content("~/Lista_Tours/images/footer-bg.jpg")');">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <img src="@Url.Content("~/Lista_Tours/images/LogoTravel.png")" alt="" style="margin-bottom: 40px;">
-                        <p>Panel de Administración - © @DateTime.Now.Year Travel Agency</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- FIN DEL PIE DE PÁGINA -->
 
+@section Scripts {
     <!-- SCRIPTS NECESARIOS -->	
     <script src="@Url.Content("~/Lista_Tours/js/jquery.min.js")"></script>
     <script src="@Url.Content("~/Lista_Tours/js/jquery-migrate-3.0.1.min.js")"></script>
@@ -208,5 +160,4 @@
             // para el panel de administración si es necesario
         });
     </script>
-</body>
-</html>
+}
