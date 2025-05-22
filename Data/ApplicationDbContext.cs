@@ -28,5 +28,6 @@ namespace AgenciaDeViajes.Data
 
             // Configuración de relaciones adicionales si es necesario
         }
+
     }
 }
