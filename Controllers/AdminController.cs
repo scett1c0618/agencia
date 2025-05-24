@@ -117,14 +117,26 @@ namespace AgenciaDeViajes.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _context.Destinos.Add(destino);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(AdminDestinos));
             }
 
+            // 🚨 Diagnóstico: imprimir errores en consola
+            foreach (var key in ModelState.Keys)
+            {
+                var errors = ModelState[key].Errors;
+                foreach (var error in errors)
+                {
+                    Console.WriteLine($"Error en {key}: {error.ErrorMessage}");
+                }
+            }
+
             ViewBag.Regiones = _context.Regiones.ToList();
             return View(destino);
         }
+
 
         // GET: Editar Destino
         [HttpGet]
