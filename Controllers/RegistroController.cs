@@ -23,9 +23,15 @@ namespace AgenciaDeViajes.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registrar(string nombreUsuario, string contrasena)
+        public IActionResult Registrar(string nombreUsuario, string contrasena, string confirmarContrasena)
         {
-            // Verifica si el nombre ya está registrado
+            if (contrasena != confirmarContrasena)
+            {
+                ViewBag.Error = "Las contraseñas no coinciden.";
+                return View();
+            }
+
+            // Validar que no exista el usuario
             var existe = _context.Usuarios.Any(u => u.NombreUsuario == nombreUsuario);
 
             if (existe)
@@ -38,15 +44,15 @@ namespace AgenciaDeViajes.Controllers
             {
                 NombreUsuario = nombreUsuario,
                 Contrasena = contrasena,
-                Rol = "Cliente" // o "Usuario"
+                Rol = "Cliente"
             };
 
             _context.Usuarios.Add(nuevoUsuario);
             _context.SaveChanges();
 
-            // Redirige al login
             return RedirectToAction("Index", "Login");
         }
+
 
     }
 }
