@@ -17,9 +17,17 @@
     
     <!-- Sección para CSS adicional de vistas -->
     @RenderSection("Styles", required: false)
+
 </head>
 <body>
 
+    @{
+        // Cambia esta parte
+        var hideHeaderFooter = ViewBag.HideHeaderFooter ?? false;
+    }
+
+    @if (!hideHeaderFooter)
+    {
     <header class="tg-header-height">
         <div class="tg-header__area tg-header-tu-menu tg-header-lg-space z-index-999 tg-transparent" id="header-sticky">
             <div class="container">
@@ -164,11 +172,14 @@
         </div>
         <div class="offCanvas__overly"></div>
     </header>
+    }
 
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 
+    @if (!hideHeaderFooter)
+    {
     <footer>
         <div class="container">
             <div class="row">
@@ -213,6 +224,7 @@
             </div>
         </div>
     </footer>
+    }
 
     <script src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.min.js")"></script>
     <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js")"></script>
