@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AgenciaDeViajes.Models
 {
-    public class RegionCreate
+    public class Region
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

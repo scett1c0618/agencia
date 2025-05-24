@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AgenciaDeViajes.Models
 {
-    public class DestinoCreate
+    public class Destino
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,7 +13,8 @@ namespace AgenciaDeViajes.Models
         public int id_region { get; set; }
 
         [ForeignKey("id_region")]
-        public Region Region { get; set; }
+        public Region? Region { get; set; }
+
 
         [Required]
         [StringLength(255)]
