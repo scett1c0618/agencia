@@ -10,6 +10,8 @@ namespace AgenciaDeViajes.Data
         {
         }
 
+        
+        
         public DbSet<Region> Regiones { get; set; }
         public DbSet<Destino> Destinos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
