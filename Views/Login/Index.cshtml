@@ -15,7 +15,7 @@
             <h3>Iniciar Sesión</h3>
         </div>
         <div class="card-body">
-            <form asp-action="Index" method="post">
+            <form asp-controller="Login" asp-action="Iniciar" method="post">
                 <div class="form-group mb-3">
                     <label for="nombreUsuario">Usuario:</label>
                     <input type="text" class="form-control" name="nombreUsuario" required />
@@ -28,6 +28,15 @@
                     <button type="submit" class="btn btn-primary">Ingresar</button>
                 </div>
             </form>
+
+            <div class="text-center mt-3">
+                <p>O inicia sesión con:</p>
+                <a class="btn btn-outline-dark" href="/Login/GoogleLogin" style="display:inline-flex;align-items:center;gap:10px;">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20" height="20">
+                    Iniciar con Google
+                </a>
+            </div>
+
 
             @if (ViewBag.Error != null)
             {

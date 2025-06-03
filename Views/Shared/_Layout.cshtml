@@ -80,11 +80,20 @@
                             <div class="tg-header-btn ml-20 d-none d-sm-block">
                                 @if (User.Identity.IsAuthenticated)
                                     {
-                                        <a asp-controller="Cuenta" asp-action="Perfil" class="btn btn-outline-info btn-sm me-2">Mi Cuenta</a>
-                                        <form asp-controller="Login" asp-action="Logout" method="post" class="d-inline">
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">Cerrar sesión</button>
-                                        </form>
+                                        <div class="d-flex align-items-center">
+                                            <!-- Botón Mi Cuenta como icono -->
+                                            <a asp-controller="Cuenta" asp-action="Perfil" class="btn btn-icon me-2" title="Mi Cuenta">
+                                                <i class="fas fa-user-circle fa-lg text-info"></i>
+                                            </a>
+                                            
+                                            <!-- Botón Cerrar Sesión como icono -->
+                                            <form asp-controller="Login" asp-action="Logout" method="post" class="d-inline">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-icon" title="Cerrar sesión">
+                                                    <i class="fas fa-sign-out-alt fa-lg text-danger"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     }
                                     else
                                     {
