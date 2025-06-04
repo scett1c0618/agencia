@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using AgenciaDeViajes.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
+using AgenciaDeViajes.Services; // <-- Servicio de clima
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,9 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization(); // Roles opcionales
+
+// === REGISTRO DEL SERVICIO DE CLIMA ===
+builder.Services.AddHttpClient<WeatherService>(); // <-- Registro del servicio HTTP
 
 var app = builder.Build();
 
