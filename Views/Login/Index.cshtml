@@ -1,9 +1,9 @@
+@model AgenciaDeViajes.Models.Usuario
 @{
     ViewData["Title"] = "Iniciar Sesión";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.HideHeaderFooter = true; // Esta es la clave
+    ViewBag.HideHeaderFooter = true;
 }
-
 
 @section Styles {
     <link rel="stylesheet" href="~/css/auth.css" />
@@ -16,14 +16,18 @@
         </div>
         <div class="card-body">
             <form asp-controller="Login" asp-action="Iniciar" method="post">
+                @Html.AntiForgeryToken()
+
                 <div class="form-group mb-3">
-                    <label for="nombreUsuario">Usuario:</label>
-                    <input type="text" class="form-control" name="nombreUsuario" required />
+                    <label asp-for="NombreUsuario">Correo electrónico:</label>
+                    <input asp-for="NombreUsuario" class="form-control" required />
                 </div>
+
                 <div class="form-group mb-3">
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" class="form-control" name="contrasena" required />
+                    <label asp-for="Contrasena">Contraseña:</label>
+                    <input asp-for="Contrasena" class="form-control" type="password" required />
                 </div>
+
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Ingresar</button>
                 </div>
@@ -36,7 +40,6 @@
                     Iniciar con Google
                 </a>
             </div>
-
 
             @if (ViewBag.Error != null)
             {

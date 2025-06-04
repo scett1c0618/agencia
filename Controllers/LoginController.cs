@@ -71,20 +71,19 @@ namespace AgenciaDeViajes.Controllers
             var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
             var name = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
 
-            if (email == null)
-                return RedirectToAction("Index");
+            if (email == null) return RedirectToAction("Index");
 
-            // Extraer el nombre de usuario desde el email (antes del @)
-            var nombreUsuario = email.Split('@')[0];
-
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == nombreUsuario);
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == email);
             if (usuario == null)
             {
                 usuario = new Usuario
                 {
-                    NombreUsuario = nombreUsuario,
+                    NombreUsuario = email,
+                    NombreCompleto = name ?? "Usuario Google",
                     Contrasena = "externo",
-                    Rol = "Cliente"
+                    Rol = "Cliente",
+                    MetodoRegistro = "Google",
+                    FechaRegistro = DateTime.UtcNow
                 };
                 _context.Usuarios.Add(usuario);
                 _context.SaveChanges();
@@ -92,12 +91,11 @@ namespace AgenciaDeViajes.Controllers
 
             var identity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, nombreUsuario),
-                new Claim(ClaimTypes.Role, "Cliente")
+                new Claim(ClaimTypes.Name, usuario.NombreUsuario),
+                new Claim(ClaimTypes.Role, usuario.Rol)
             }, CookieAuthenticationDefaults.AuthenticationScheme);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-
             return RedirectToAction("Index", "Home");
         }
 

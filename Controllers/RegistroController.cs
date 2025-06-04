@@ -1,7 +1,4 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using AgenciaDeViajes.Data;
 using AgenciaDeViajes.Models;
 
@@ -19,40 +16,48 @@ namespace AgenciaDeViajes.Controllers
         [HttpGet]
         public IActionResult Registrar()
         {
-            return View();
+            return View(new Usuario());
         }
 
         [HttpPost]
-        public IActionResult Registrar(string nombreUsuario, string contrasena, string confirmarContrasena)
+        [ValidateAntiForgeryToken]
+        public IActionResult Registrar(Usuario usuario, string confirmarContrasena)
         {
-            if (contrasena != confirmarContrasena)
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Error = "Por favor, completa todos los campos requeridos correctamente.";
+                return View(usuario);
+            }
+
+            if (usuario.Contrasena != confirmarContrasena)
             {
                 ViewBag.Error = "Las contraseñas no coinciden.";
-                return View();
+                return View(usuario);
             }
 
-            // Validar que no exista el usuario
-            var existe = _context.Usuarios.Any(u => u.NombreUsuario == nombreUsuario);
-
-            if (existe)
+            bool yaExiste = _context.Usuarios.Any(u => u.NombreUsuario == usuario.NombreUsuario);
+            if (yaExiste)
             {
-                ViewBag.Error = "Este nombre de usuario ya está registrado.";
-                return View();
+                ViewBag.Error = "Este correo ya está registrado.";
+                return View(usuario);
             }
 
-            var nuevoUsuario = new Usuario
-            {
-                NombreUsuario = nombreUsuario,
-                Contrasena = contrasena,
-                Rol = "Cliente"
-            };
+            // Configura valores por defecto
+            usuario.Rol = "Cliente";
+            usuario.MetodoRegistro = "Manual";
+            usuario.FechaRegistro = DateTime.UtcNow;
 
-            _context.Usuarios.Add(nuevoUsuario);
+            if (usuario.FechaNacimiento.HasValue)
+            {
+                usuario.FechaNacimiento = DateTime.SpecifyKind(usuario.FechaNacimiento.Value, DateTimeKind.Utc);
+            }
+
+
+            _context.Usuarios.Add(usuario);
             _context.SaveChanges();
 
+            TempData["MensajeExito"] = "Cuenta creada correctamente. Ya puedes iniciar sesión.";
             return RedirectToAction("Index", "Login");
         }
-
-
     }
 }
