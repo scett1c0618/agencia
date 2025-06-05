@@ -1,0 +1,47 @@
+@model IEnumerable<AgenciaDeViajes.Models.EntradaBlog>
+
+@{
+    ViewData["Title"] = "Blog de Viajes";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="display-4">Blog de la Agencia de Viajes</h1>
+            <p class="lead mb-0">Explora artículos, consejos, destinos y experiencias únicas.</p>
+        </div>
+        <div>
+            <a asp-action="Create" class="btn btn-success">+ Nueva Entrada</a>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        @foreach (var entrada in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <img src="@entrada.FotoUrl" class="card-img-top" alt="Imagen de @entrada.Titulo" />
+                    <div class="card-body">
+                        <h5 class="card-title">@entrada.Titulo</h5>
+                        <p class="card-text">
+                            <strong>@entrada.Ciudad</strong> - @entrada.FechaPublicacion.ToString("dd/MM/yyyy")
+                        </p>
+                        <p class="card-text">@Html.Raw(entrada.Descripcion.Replace("\n", "<br />"))</p>
+
+                        <div class="d-flex gap-2 mt-3">
+                            <a asp-action="Details" asp-route-id="@entrada.Id" class="btn btn-info">Ver Detalle Completo</a>
+                            <a asp-action="Create" asp-route-id="@entrada.Id" class="btn btn-warning">Editar</a>
+
+                            <form asp-action="DeleteConfirmed" asp-route-id="@entrada.Id" method="post" 
+                                  onsubmit="return confirm('¿Seguro que quieres eliminar esta entrada?');">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
