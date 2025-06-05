@@ -13,21 +13,21 @@ namespace AgenciaDeViajes.Data
         public DbSet<Region> Regiones { get; set; }
         public DbSet<Destino> Destinos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-
-        // Agregar DbSet para Festividades
         public DbSet<Festividad> Festividades { get; set; }
         public DbSet<Evento> Eventos { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
+
+        public DbSet<EntradaBlog> EntradasBlog { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configuración de las relaciones
+            // Relaciones existentes
             modelBuilder.Entity<Destino>()
                 .HasOne(d => d.Region)
                 .WithMany(r => r.Destinos)
                 .HasForeignKey(d => d.id_region);
 
-            // Configuración de relaciones adicionales si es necesario
+            // Agrega aquí más relaciones si es necesario
         }
-
     }
 }
