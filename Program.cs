@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using appAgencia.Data;
+using AgenciaDeViajes.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,16 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
+
+// 👇 Habilitar autenticación con cookies
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => {
+        options.LoginPath = "/Login/Index";
+    });
+
+builder.Services.AddAuthorization(); // Si necesitas roles en el futuro
+
+
 var app = builder.Build();
 
 // Ejecuta migraciones automáticamente en producción
@@ -19,11 +30,6 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();  // 👈 Esto crea/modifica tablas en Render
 }
-
-/* Reemplazar esto para trabajar con base de datos local en el archivo de appsetings.json - Jean Estrada */
-/* "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Port=5432;Database=TrabajoFinalProgra;Username=postgres;Password=posgresjeanestrada;"
-  }, */
 
 
 // Configuración del pipeline HTTP
@@ -42,6 +48,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

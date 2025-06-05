@@ -1,6 +1,6 @@
 using System;
 
-namespace appAgencia.Models
+namespace AgenciaDeViajes.Models
 {
     public class Actividad
 {

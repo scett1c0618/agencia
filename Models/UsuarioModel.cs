@@ -1,12 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace appAgencia.Models
+namespace AgenciaDeViajes.Models
 {
     public class Usuario
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // 👈 Asegura que se autogenere
         public int IdUsuario { get; set; }
+
 
         [Required]
         [StringLength(100)]

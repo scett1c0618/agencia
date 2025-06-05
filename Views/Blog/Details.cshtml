@@ -1,0 +1,25 @@
+@model AgenciaDeViajes.Models.EntradaBlog
+
+@{
+    ViewData["Title"] = "Detalle de Entrada del Blog";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-3">@Model.Titulo</h1>
+
+    <p class="text-muted">
+        <strong>@Model.Ciudad</strong> - @Model.FechaPublicacion.ToString("dd/MM/yyyy")
+    </p>
+
+    <img src="@Model.FotoUrl" alt="Imagen de @Model.Titulo" class="img-fluid mb-4" />
+
+    <div>
+        <!-- Mostrar descripción -->
+        <p>@Html.Raw(Model.Descripcion.Replace("\n", "<br />"))</p>
+
+        <!-- Mostrar contenido adicional, si quieres -->
+        <p>@Html.Raw(Model.Contenido.Replace("\n", "<br />"))</p>
+    </div>
+
+    <a asp-action="Index" class="btn btn-primary mt-4">Volver al Blog</a>
+</div>

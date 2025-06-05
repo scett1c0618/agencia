@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore; // ¡Importante para Include()!
-using appAgencia.Data;
-using appAgencia.Models;
+using AgenciaDeViajes.Data;
+using AgenciaDeViajes.Models;
 
-namespace appAgencia.Controllers
+namespace AgenciaDeViajes.Controllers
 {
     public class AboutController : Controller
     {

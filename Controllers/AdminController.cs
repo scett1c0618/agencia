@@ -1,77 +1,143 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; // ¡Importante para Include()!
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using appAgencia.Data;
-using appAgencia.Models;
+using AgenciaDeViajes.Data;
+using AgenciaDeViajes.Models;
 
-
-[Authorize(Roles = "Admin")]
-public class AdminController : Controller
+namespace AgenciaDeViajes.Controllers
 {
-    private readonly ApplicationDbContext _context;
-
-    public AdminController(ApplicationDbContext context)
+    [Authorize(Roles = "Admin")]
+    public class AdminController : Controller
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public ActionResult Index()
-    {
-        return View();
-    }
-
-    // REGIONES CRUD
-    public ActionResult CreateRegion()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public ActionResult CreateRegion(Region region)
-    {
-        if (ModelState.IsValid)
+        public AdminController(ApplicationDbContext context)
         {
-            _context.Regiones.Add(region);
-            _context.SaveChanges();
+            _context = context;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        // --- ADMIN DESTINOS PRINCIPAL ---
+        public IActionResult AdminDestinos()
+        {
+            var regiones = _context.Regiones
+                .Include(r => r.Destinos) // si tienes relación con Destinos
+                .ToList();
+            return View(regiones);
+        }
+
+        // ----------------- CRUD REGIONES -----------------
+
+        public IActionResult CreateRegion()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateRegion(Region region)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Regiones.Add(region);
+                _context.SaveChanges();
+                return RedirectToAction("AdminDestinos");
+            }
+            return View(region);
+        }
+
+        public IActionResult EditRegion(int id)
+        {
+            var region = _context.Regiones.Find(id);
+            if (region == null)
+            {
+                return NotFound();
+            }
+            return View(region);
+        }
+
+        [HttpPost]
+        public IActionResult EditRegion(Region region)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Entry(region).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction("AdminDestinos");
+            }
+            return View(region);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteRegion(int id)
+        {
+            var region = _context.Regiones.Find(id);
+            if (region != null)
+            {
+                _context.Regiones.Remove(region);
+                _context.SaveChanges();
+            }
             return RedirectToAction("AdminDestinos");
         }
-        return View(region);
-    }
 
-    public ActionResult EditRegion(int id)
-    {
-        var region = _context.Regiones.Find(id);
-        if (region == null)
+        // ----------------- CRUD DESTINOS (estructura base) -----------------
+
+        public IActionResult CreateDestino()
         {
-            return NotFound();
+            ViewBag.Regiones = _context.Regiones.ToList(); // para seleccionar región
+            return View();
         }
-        return View(region);
-    }
 
-    [HttpPost]
-    public ActionResult EditRegion(Region region)
-    {
-        if (ModelState.IsValid)
+        [HttpPost]
+        public IActionResult CreateDestino(Destino destino)
         {
-            _context.Entry(region).State = EntityState.Modified;
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Destinos.Add(destino);
+                _context.SaveChanges();
+                return RedirectToAction("AdminDestinos");
+            }
+            ViewBag.Regiones = _context.Regiones.ToList();
+            return View(destino);
+        }
+
+        public IActionResult EditDestino(int id)
+        {
+            var destino = _context.Destinos.Find(id);
+            if (destino == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Regiones = _context.Regiones.ToList();
+            return View(destino);
+        }
+
+        [HttpPost]
+        public IActionResult EditDestino(Destino destino)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Entry(destino).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction("AdminDestinos");
+            }
+            ViewBag.Regiones = _context.Regiones.ToList();
+            return View(destino);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteDestino(int id)
+        {
+            var destino = _context.Destinos.Find(id);
+            if (destino != null)
+            {
+                _context.Destinos.Remove(destino);
+                _context.SaveChanges();
+            }
             return RedirectToAction("AdminDestinos");
         }
-        return View(region);
     }
-
-    [HttpPost]
-    public ActionResult DeleteRegion(int id)
-    {
-        var region = _context.Regiones.Find(id);
-        if (region != null)
-        {
-            _context.Regiones.Remove(region);
-            _context.SaveChanges();
-        }
-        return RedirectToAction("AdminDestinos");
-    }
-
-    // DESTINOS CRUD (similar a regiones)
-    // ...
 }

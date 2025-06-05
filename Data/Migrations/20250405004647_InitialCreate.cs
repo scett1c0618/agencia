@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace appAgencia.Data.Migrations
+namespace AgenciaDeViajes.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

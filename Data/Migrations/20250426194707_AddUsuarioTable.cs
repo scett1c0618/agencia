@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace appAgencia.Data.Migrations
+namespace AgenciaDeViajes.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddUsuarioTable : Migration
