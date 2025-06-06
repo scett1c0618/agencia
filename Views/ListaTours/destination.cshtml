@@ -1,23 +1,22 @@
-@model List<AgenciaDeViajes.Models.Region>
+@model List<AgenciaDeViajes.Models.ViewModels.RegionView>
 @{
-    Layout = "_Layout";  // Usamos el layout compartido
+    Layout = "_Layout";
     ViewBag.Title = "Destinos a Visitar";
 }
 
-    <!-- ANIMACIONES -->
-    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/open-iconic-bootstrap.min.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/animate.css")">
+<!-- ANIMACIONES -->
+<link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/open-iconic-bootstrap.min.css")">
+<link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/animate.css")">
 
-    <!-- ESTILOS PRINCIPALES -->
-    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/bootstrap_style.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/styles.css")">
+<!-- ESTILOS PRINCIPALES -->
+<link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/bootstrap_style.css")">
+<link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/styles.css")">
 
-    <!-- ESTILOS DE LIBRERIAS -->
-    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/bootstrap-datepicker.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/jquery.timepicker.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/owl.carousel.min.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/owl.theme.default.min.css")">
-
+<!-- ESTILOS DE LIBRERIAS -->
+<link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/bootstrap-datepicker.css")">
+<link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/jquery.timepicker.css")">
+<link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/owl.carousel.min.css")">
+<link rel="stylesheet" href="@Url.Content("~/Lista_Tours/css/owl.theme.default.min.css")">
 
 <!-- INICIO DE BANNER -->
 <section class="hero-wrap hero-wrap-2 " style="background-image: url('@Url.Content("~/Lista_Tours/images/bg_1.jpg")');" data-stellar-background-ratio="0.5">
@@ -27,7 +26,7 @@
             <div class="col-md-9 ftco-animate pb-5 text-center">
                 <h1 class="mb-3 bread">Lugares para Viajar</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a href="@Url.Action("Index", "Home")">Inicio <i class="fas fa-arrow-right"></i></a></span> 
+                    <span class="mr-2"><a href="@Url.Action("Index", "Home")">Inicio <i class="fas fa-arrow-right"></i></a></span>
                     <span>Guía de Viajes <i class="fas fa-arrow-right"></i></span>
                 </p>
             </div>
@@ -76,13 +75,26 @@
             {
                 foreach (var destino in region.Destinos)
                 {
+                    // Generar el slug SEO-friendly
+                    var nombreSeo = destino.nom_destino.ToLower().Replace(" ", "-");
+
                     <div class="col-md-4 ftco-animate">
                         <div class="project-wrap">
-                            <a href="#" class="img" style="background-image: url('@Url.Content(destino.ImgDest_url)');"></a>
+                            <!-- Imagen como enlace SEO -->
+                            <a asp-action="Details"
+                               asp-route-nombreSeo="@nombreSeo"
+                               class="img"
+                               style="background-image: url('@Url.Content(destino.ImgDest_url)');"></a>
                             <div class="text p-4">
                                 <span class="price">S/. @destino.precio_tour.ToString("0.00") / persona</span>
                                 <span class="days">@destino.time_tour</span>
-                                <h3><a href="#">@destino.nom_destino</a></h3>
+                                <!-- Nombre como enlace SEO -->
+                                <h3>
+                                    <a asp-action="Details"
+                                       asp-route-nombreSeo="@nombreSeo">
+                                        @destino.nom_destino
+                                    </a>
+                                </h3>
                                 <p class="location"><span class="fas fa-map-marker-alt"></span> @region.desc_region.Split('-')[0].Trim(), Perú</p>
                                 <ul>
                                     <li><span class="fas fa-ticket-alt"></span>@destino.num_entradas entradas</li>
@@ -115,7 +127,7 @@
 <!-- FIN DE LA LISTA DE DESTINOS -->
 
 @section Scripts {
-    <!-- SCRIPTS NECESARIOS -->    
+    <!-- SCRIPTS NECESARIOS -->
     <script src="@Url.Content("~/Lista_Tours/js/jquery.min.js")"></script>
     <script src="@Url.Content("~/Lista_Tours/js/jquery-migrate-3.0.1.min.js")"></script>
     <script src="@Url.Content("~/Lista_Tours/js/bootstrap.min.js")"></script>

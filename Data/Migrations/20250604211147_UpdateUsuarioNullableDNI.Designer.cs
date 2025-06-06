@@ -3,6 +3,7 @@ using System;
 using AgenciaDeViajes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AgenciaDeViajes.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250604211147_UpdateUsuarioNullableDNI")]
+    partial class UpdateUsuarioNullableDNI
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,42 +99,6 @@ namespace AgenciaDeViajes.Data.Migrations
                     b.HasIndex("id_region");
 
                     b.ToTable("Destinos");
-                });
-
-            modelBuilder.Entity("AgenciaDeViajes.Models.EntradaBlog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Ciudad")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Contenido")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("FechaPublicacion")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FotoUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EntradasBlog");
                 });
 
             modelBuilder.Entity("AgenciaDeViajes.Models.Evento", b =>
@@ -268,6 +235,7 @@ namespace AgenciaDeViajes.Data.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<string>("Telefono")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 

@@ -7,6 +7,7 @@ using AgenciaDeViajes.Models;
 
 namespace AgenciaDeViajes.Controllers
 {
+    [Route("Login")]
     public class LoginController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,14 +17,17 @@ namespace AgenciaDeViajes.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        // GET: /Login
+        [HttpGet("")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Index(string nombreUsuario, string contrasena)
+        // POST: /Login/Iniciar
+        [HttpPost("Iniciar")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Iniciar(string nombreUsuario, string contrasena)
         {
             var usuario = _context.Usuarios
                 .FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.Contrasena == contrasena);
@@ -33,10 +37,10 @@ namespace AgenciaDeViajes.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, usuario.NombreUsuario),
-                    new Claim(ClaimTypes.Role, usuario.Rol)
+                    new Claim(ClaimTypes.Role, usuario.Rol ?? "Usuario")
                 };
 
-                var identity = new ClaimsIdentity(claims, "MiCookieAuth");
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
@@ -45,14 +49,63 @@ namespace AgenciaDeViajes.Controllers
             }
 
             ViewBag.Error = "Usuario o contraseña incorrecta";
-            return View();
+            return View("Index");
         }
 
+        [HttpGet("GoogleLogin")]
+        public IActionResult GoogleLogin()
+        {
+            var redirectUrl = Url.Action("GoogleResponse");
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            return Challenge(properties, "Google");
+        }
+
+        [HttpGet("GoogleResponse")]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (!result.Succeeded)
+                return RedirectToAction("Index");
+
+            var claims = result.Principal.Identities.FirstOrDefault()?.Claims;
+            var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var name = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+            if (email == null) return RedirectToAction("Index");
+
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == email);
+            if (usuario == null)
+            {
+                usuario = new Usuario
+                {
+                    NombreUsuario = email,
+                    NombreCompleto = name ?? "Usuario Google",
+                    Contrasena = "externo",
+                    Rol = "Cliente",
+                    MetodoRegistro = "Google",
+                    FechaRegistro = DateTime.UtcNow
+                };
+                _context.Usuarios.Add(usuario);
+                _context.SaveChanges();
+            }
+
+            var identity = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Name, usuario.NombreUsuario),
+                new Claim(ClaimTypes.Role, usuario.Rol)
+            }, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpPost("Logout")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

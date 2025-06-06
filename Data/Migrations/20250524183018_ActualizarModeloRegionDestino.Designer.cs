@@ -3,6 +3,7 @@ using System;
 using AgenciaDeViajes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,13 +12,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AgenciaDeViajes.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250524183018_ActualizarModeloRegionDestino")]
+    partial class ActualizarModeloRegionDestino
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.14")
+                .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -96,42 +99,6 @@ namespace AgenciaDeViajes.Data.Migrations
                     b.HasIndex("id_region");
 
                     b.ToTable("Destinos");
-                });
-
-            modelBuilder.Entity("AgenciaDeViajes.Models.EntradaBlog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Ciudad")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Contenido")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("FechaPublicacion")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FotoUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EntradasBlog");
                 });
 
             modelBuilder.Entity("AgenciaDeViajes.Models.Evento", b =>
@@ -237,26 +204,6 @@ namespace AgenciaDeViajes.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<string>("DNI")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<DateTime?>("FechaNacimiento")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("FechaRegistro")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("MetodoRegistro")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("NombreCompleto")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
                     b.Property<string>("NombreUsuario")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -266,10 +213,6 @@ namespace AgenciaDeViajes.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Telefono")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
 
                     b.HasKey("IdUsuario");
 
