@@ -52,6 +52,8 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapControllers();
+
 // === RUTA EXPLÍCITA PARA DESTINATION ===
 app.MapControllerRoute(
     name: "destinosLista",
