@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using AgenciaDeViajes.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AgenciaDeViajes.Services; // <-- Asegúrate de agregar esto
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,16 +15,30 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// Habilitar autenticación con cookies
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => {
-        options.LoginPath = "/Login/Index";
-    });
+// Autenticación: Cookies + Google
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    options.LoginPath = "/Login/Index";
+})
+.AddGoogle(options =>
+{
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    options.CallbackPath = "/signin-google";
+});
 
 builder.Services.AddAuthorization();
 
 // === REGISTRO DEL SERVICIO DE CLIMA ===
 builder.Services.AddHttpClient<WeatherService>(); // <-- Este es el registro PRO
+
+
+builder.Services.AddSingleton<TourPopularityService>();
 
 var app = builder.Build();
 
